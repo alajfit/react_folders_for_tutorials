@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>React Starter Kit</title>
+        <script type="text/javascript" src="./build/react.js"></script>
+        <script type="text/javascript" src="./build/react-dom.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script type="text/babel">
+            var HelloWorld = React.createClass({
+                // NB: Here we can set the default types of an object and for immutability
+                propTypes: {
+                    name: React.PropTypes.string,
+                    // We can have PropTypes of - string, array, bool, func, number, object
+                    age: React.PropTypes.number.isRequired
+                    // if we add isRequired to the end of our propTypes object we will force the prop to be required
+                },
+                // This function allows us to set the default values of a prop
+                getDefaultProps: function() {
+                    return {
+                        name: 'Anonymous'
+                    }
+                },
+                // Here we render our component as normal but we are using passed props
+                render: function() {
+                    return (
+                        <div>
+                            <h1>Hello {this.props.name}!</h1>
+                            <p>I see your {this.props.age}</p>
+                        </div>
+                    );
+                }
+            });
+            ReactDOM.render(
+                <div>
+                    <HelloWorld name="Alan J. Fitzpatrick" age={30} />
+                    <HelloWorld age={45} />
+                    <HelloWorld name={false} age={25} />
+                    <HelloWorld name="Helen" />
+                </div>, // We can see that props are set as attributes and non strings must be passed as an object
+                document.getElementById('app')
+            );
+        </script>
+    </body>
+</html>

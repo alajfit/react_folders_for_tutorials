@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>React Starter Kit</title>
+        <script type="text/javascript" src="./build/react.js"></script>
+        <script type="text/javascript" src="./build/react-dom.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script type="text/babel">
+        // We use text/babel to define a babel script for rendering, this is completed with the pulled in script above
+            // It is a standard to Camel Case the components
+            var HelloWorld = React.createClass({ // This is how we create an individual react Component
+                render: function() { // We createa render function for our HTML
+                    return ( // We return this in parenthsis
+                        <div>
+                            <h1>Hello World!</h1>
+                            <p>This is our first component</p>
+                        </div>
+                    ); // NB: Multi elements in react must be inside a single top level element
+                }
+            });
+            ReactDOM.render( // This is our main render function, this renders to the DOM
+                <div>
+                    <HelloWorld />
+                    <h4>Yayyyy!</h4>
+                </div>,
+                document.getElementById('app')
+            );
+        </script>
+    </body>
+</html>
