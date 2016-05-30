@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>React Starter Kit</title>
+        <script type="text/javascript" src="./build/react.js"></script>
+        <script type="text/javascript" src="./build/react-dom.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script type="text/babel">
+            var HelloWorld = React.createClass({
+                propTypes: {
+                    name: React.PropTypes.string,
+                    age: React.PropTypes.number.isRequired,
+                    isPerson: React.PropTypes.bool
+                },
+                getDefaultProps: function() {
+                    return {
+                        age: 0
+                    }
+                },
+                getInitialState: function() {
+                    return {
+                        value: 1
+                    }
+                },
+                componentDidMount: function() { // this function allows us to fire an action after component load
+                    this.setState({ // This can be used to set the state
+                        value: this.state.value + 19 // Here we see that we can access existing states to set new ones
+                    });
+                },
+                render: function() {
+                    var greeting = 'World';
+                    if(this.props.isPerson) {
+                        greeting = (<Person name={this.props.name} />);
+                    }
+                    var ageCheck = '!you are not old enough to Drink!';
+                    if(this.props.age > 17) {
+                        ageCheck = 'you are old enough to drink :D';
+                    }
+                    return (
+                        <div>
+                            <h1>Hello {greeting}</h1>
+                            <p>I see your <Age age={this.props.age} /> {ageCheck}</p>
+                            <p>This is state {this.state.value}</p>
+                        </div>
+                    ); // State can be accessed in the exact same way
+                }
+            });
+
+            var Person = React.createClass({
+                render: function() {
+                    return (
+                        <span>{this.props.name}</span>
+                    );
+                }
+            });
+
+            var Age = React.createClass({
+                render: function() {
+                    return (
+                        <span>{this.props.age}</span>
+                    );
+                }
+            });
+
+            ReactDOM.render(
+                <div>
+                    <HelloWorld name="Alan J. Fitzpatrick" age={30} isPerson={true} />
+                </div>,
+                document.getElementById('app')
+            );
+        </script>
+    </body>
+</html>
